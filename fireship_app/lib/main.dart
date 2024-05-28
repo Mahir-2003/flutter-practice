@@ -15,24 +15,28 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.green,
           title: const Text("Me when I learn flutter"),
         ),
-        body: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Expanded(
-              flex: 4,
-              child: Icon( Icons.backpack, color: Colors.green,),
-              ),
-            Icon(
-              Icons.leaderboard,
-              color: Color.fromARGB(255, 9, 109, 190),
-              ),
-            Icon(
-              Icons.person,
-              color: Colors.red,
-              ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.subject),
+          onPressed: () {
+            print("You clicked me!");
+          },
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              label: "Business", 
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.school),
+              label: "School",
+            ),
           ],
-        )
+        ),
         )
       );  
   }  
