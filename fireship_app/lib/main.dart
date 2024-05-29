@@ -9,22 +9,48 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Text("Me when I learn flutter"),
-        ),
-        body: ListView.builder(
-          itemBuilder: (_, index) {
-            return Container(
-              color: Colors.green[100 * ((index + 1) % 12)],
-              width: 500,
-              height: 500,
-            ); 
-          },
-        )
-      )
-    );  
+    return const MaterialApp(
+      home: HomeScreen(),
+    );
   }  
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: const Text("Me when I learn flutter"),
+      ),
+      body: ElevatedButton(
+        child: const Text("Navigate"),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const AboutScreen(),
+          ));
+        }
+      )
+    );
+  }
+}
+
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("About"),
+      ),
+      body: const Center(
+        child: Text("This is the about screen"),
+      ), 
+    );
+  }
 }
