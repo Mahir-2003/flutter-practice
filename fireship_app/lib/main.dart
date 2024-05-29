@@ -15,29 +15,32 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.green,
           title: const Text("Me when I learn flutter"),
         ),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.subject),
-          onPressed: () {
-            print("You clicked me!");
-          },
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
+        body: ListView(
+          scrollDirection: Axis.horizontal,
+          addAutomaticKeepAlives: false,
+          children: [
+            Container(
+              width: 400.0,
+              color: Colors.red,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: "Business", 
+            Container(
+              width: 400.0,
+              color: Colors.blue,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: "School",
+            Container(
+              width: 400.0,
+              color: Colors.green,
+            ),
+            Container(
+              width: 400.0,
+              color: Colors.yellow,
+            ),
+            Container(
+              width: 400.0,
+              color: Colors.orange,
             ),
           ],
-        ),
         )
-      );  
+      ));  
   }  
 }
