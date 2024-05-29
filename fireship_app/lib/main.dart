@@ -15,32 +15,16 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.green,
           title: const Text("Me when I learn flutter"),
         ),
-        body: ListView(
-          scrollDirection: Axis.horizontal,
-          addAutomaticKeepAlives: false,
-          children: [
-            Container(
-              width: 400.0,
-              color: Colors.red,
-            ),
-            Container(
-              width: 400.0,
-              color: Colors.blue,
-            ),
-            Container(
-              width: 400.0,
-              color: Colors.green,
-            ),
-            Container(
-              width: 400.0,
-              color: Colors.yellow,
-            ),
-            Container(
-              width: 400.0,
-              color: Colors.orange,
-            ),
-          ],
+        body: ListView.builder(
+          itemBuilder: (_, index) {
+            return Container(
+              color: Colors.green[100 * ((index + 1) % 12)],
+              width: 500,
+              height: 500,
+            ); 
+          },
         )
-      ));  
+      )
+    );  
   }  
 }
