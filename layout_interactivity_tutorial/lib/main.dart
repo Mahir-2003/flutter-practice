@@ -75,11 +75,12 @@ class TitleSection extends StatelessWidget {
                 ))
           ],
         ),),
-        Icon(
-          Icons.star,
-          color: Colors.red[500],
-        ),
-        const Text('41'),
+        // Icon(
+        //   Icons.star,
+        //   color: Colors.red[500],
+        // ),
+        // const Text('41'),
+        const FavoriteWidget(),
       ]),
     );
   }
@@ -192,7 +193,7 @@ class FavoriteWidget extends StatefulWidget {
 class _FavoriteWidgetState extends State<FavoriteWidget> {
   bool _isFavorited = true;
   int _favoriteCount = 41;
-  Icon _icon = Icon(Icons.star);
+  Icon _icon = const Icon(Icons.star);
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +203,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
           onPressed: _toggleFavorite, 
           icon: _icon),
         SizedBox(
-          width: 18,
+          width: 20,
           child: Text('$_favoriteCount'),
         ),
       ],
@@ -213,12 +214,12 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   setState( () {
     if (_isFavorited) {
       _favoriteCount -= 1;
-      _icon = Icon(Icons.star_border); 
+      _icon = const Icon(Icons.star_border); 
       _isFavorited = false;
     }
     else {
       _favoriteCount += 1;
-      _icon = Icon(Icons.star); 
+      _icon = const Icon(Icons.star); 
       _isFavorited = true;
     }
   });
