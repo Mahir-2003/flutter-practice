@@ -28,9 +28,23 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
-
   void getNext() {
     current = WordPair.random();
+    notifyListeners();
+  }
+
+  var favorites = <WordPair>[];
+  var icon = Icon(Icons.favorite_border);
+
+  void toggleFavorite() {
+    if (favorites.contains(current)) {
+      favorites.remove(current);
+      icon = Icon(Icons.favorite_border);
+    }
+    else {
+      favorites.add(current);
+      icon = Icon(Icons.favorite);
+    }
     notifyListeners();
   }
 }
@@ -40,6 +54,8 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var pair = appState.current;
+    var buttonStyle = ElevatedButton.styleFrom(elevation: 7);
+    var favoriteIcon = appState.icon;
 
     return Scaffold(
       body: Center(
@@ -49,15 +65,32 @@ class MyHomePage extends StatelessWidget {
             Text("A name for your troubles?"),
             BigCard(pair: pair),
             SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-              appState.getNext();
-              }, 
-              style: ElevatedButton.styleFrom(
-                elevation: 7,
-              ),
-              child: Text("Next"),
-              
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      appState.toggleFavorite();
+                    }, 
+                    style: buttonStyle,
+                    child: Row(
+                      children: [
+                        favoriteIcon,
+                        SizedBox(width: 10),
+                        Text("Like"),
+                      ],
+                    )),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    appState.getNext();
+                  }, 
+                  style: buttonStyle,
+                  child: Text("Next"),
+                ),
+              ],
             )
           ],
         ),
