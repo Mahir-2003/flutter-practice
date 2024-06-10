@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 0:
         page = GeneratorPage();
       case 1:
-        page = Placeholder();
+        page = FavoritesPage();
       default:
         throw UnimplementedError();
     }
@@ -163,6 +163,41 @@ class GeneratorPage extends StatelessWidget {
   }
 }
 
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    var favorites = appState.favorites;
+
+    if (appState.favorites.isEmpty) {
+      return Center(
+        child: Card(
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Text("You don't have any favorites yet."),
+          )
+        ),
+      );
+    }
+
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text("You have ${favorites.length} favorite words:"),
+        ),
+        for (var pair in favorites)  
+          Card(
+            child: ListTile(
+              title: Text(pair.asLowerCase),
+              trailing: Icon(Icons.favorite),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
 class BigCard extends StatelessWidget {
   const BigCard({
     super.key,
@@ -191,3 +226,4 @@ class BigCard extends StatelessWidget {
     );
   }
 }
+
